@@ -10,9 +10,24 @@ export const validator = celebrate({
 
       if (isValid) return doc;
     }),
-    tipoDeConexao: Joi.string().required(),
-    classeDeConsumo: Joi.string().required(),
-    modalidadeTarifaria: Joi.string().required(),
+    tipoDeConexao: Joi.string().required().valid(
+      'monofasico',
+      'bifasico',
+      'trifasico'
+    ),
+    classeDeConsumo: Joi.string().required().valid(
+      'residencial',
+      'industrial',
+      'comercial',
+      'rural',
+      'poderPublico',
+    ),
+    modalidadeTarifaria: Joi.string().required().valid(
+      'azul',
+      'branca',
+      'verde',
+      'convencional'
+    ),
     historicoDeConsumo: Joi.array().required(),
   }).options({ abortEarly: false })
 });
